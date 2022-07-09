@@ -1,4 +1,4 @@
-(() => {
+javascript: (() => {
   const deleteClicked = event => {
     event.target.remove();
     event.stopPropagation();
