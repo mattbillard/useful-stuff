@@ -7,29 +7,26 @@ javascript: (() => {
       unmuteSelector: '*[aria-label="Unmute"]',
     },
     "www.di.fm": {
-      adsSelector: '',
+      adsSelector: "",
       muteSelector: '*[aria-label="volume"].icon-sound',
       unmuteSelector: '*[aria-label="volume"].icon-mute',
     },
     "www.youtube.com": {
-      adsSelector: '.ytp-ad-text',
+      adsSelector: ".ytp-ad-text, .ad-simple-attributed-string",
       muteSelector: '.ytp-mute-button[data-title-no-tooltip="Mute"]',
       unmuteSelector: '.ytp-mute-button[data-title-no-tooltip="Unmute"]',
-      skipButtonSelector: '.ytp-skip-ad-button',
+      skipButtonSelector: ".ytp-skip-ad-button",
     },
   };
-  
   setInterval(() => {
-    var { adsSelector, muteSelector, unmuteSelector } = configs[hostname];
+    var { adsSelector, muteSelector, skipButtonSelector, unmuteSelector } = configs[hostname];
     var ads = document.querySelectorAll(adsSelector)[0];
     var isAds = !!ads;
-
     if (isAds) {
       document.querySelectorAll(muteSelector)[0]?.click();
     } else {
       document.querySelectorAll(unmuteSelector)[0]?.click();
     }
-
     if (skipButtonSelector) {
       document.querySelectorAll(skipButtonSelector)[0]?.click();
     }
